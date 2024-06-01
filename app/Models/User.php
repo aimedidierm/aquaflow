@@ -22,6 +22,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $routeMiddleware = [
+        // ...
+        'role' => \App\Http\Middleware\CheckRole::class,
+    ];
+    
     /**
      * The attributes that should be hidden for serialization.
      *
