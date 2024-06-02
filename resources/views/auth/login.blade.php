@@ -17,18 +17,22 @@
         <div class="bg-white p-8 rounded-lg shadow-lg border border-blue-200">
             <h2 class="text-2xl font-bold text-blue-500 mb-2">Log In</h2>
             <p class="text-gray-600 mb-6">Enter your details to sign in to your account</p>
-            <form>
+            @if($errors->any())
+            <span style="color: red;">{{$errors->first()}}</span>
+            @endif
+            <form action="/auth/login" method="POST">
+                @csrf
                 <div class="mb-4">
                     <label class="block text-gray-700" for="email">Enter your email</label>
                     <input
                         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        type="email" id="email" placeholder="Enter your email">
+                        type="email" id="email" name="email" placeholder="Enter your email">
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700" for="password">Enter your password</label>
                     <input
                         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        type="password" id="password" placeholder="Enter your password">
+                        type="password" name="password" id="password" placeholder="Enter your password">
                 </div>
                 <div>
                     <button
