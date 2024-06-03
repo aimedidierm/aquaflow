@@ -25,6 +25,12 @@ Route::group(
         Route::view('overview', 'design.overview');
         Route::view('analytics', 'design.analytics');
         Route::view('predictions', 'design.predictions');
+        Route::view('chat', 'design.chat');
+        Route::view('predictions', 'design.predictions');
+        Route::view('water-management', 'design.water-management');
+        Route::view('water-quality', 'design.water-quality');
+        Route::view('monitoring', 'design.monitoring');
+        Route::view('notification', 'design.notification');
     }
 );
 
