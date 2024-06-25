@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserRole;
 use App\Http\Requests\loginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,5 +44,17 @@ class AuthController extends Controller
         } else {
             return back();
         }
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $woker = new User();
+        $woker->name = $request->input('name');
+        $woker->email = $request->input('email');
+        $woker->role = UserRole::WORKER->value;
+        $woker->password = bcrypt($request->input('password'));
+        $woker->save();
+
+        return redirect('/');
     }
 }
