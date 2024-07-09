@@ -21,25 +21,18 @@ Route::group(
         Route::get('/logout', [AuthController::class, 'logout']);
     }
 );
-Route::group(
-    ["prefix" => "design", "as" => "design."],
-    function () {
-        Route::view('overview', 'design.overview');
-        Route::view('analytics', 'design.analytics');
-        Route::view('predictions', 'design.predictions');
-        Route::view('chat', 'design.chat');
-        Route::view('predictions', 'design.predictions');
-        Route::view('water-management', 'design.water-management');
-        Route::view('water-quality', 'design.water-quality');
-        Route::view('monitoring', 'design.monitoring');
-        Route::view('notification', 'design.notification');
-    }
-);
 
 Route::group(
     ["prefix" => "admin", 'middleware' => AdminMiddleware::class, "as" => "admin."],
     function () {
         Route::get('/', [DashboardController::class, 'admin']);
+        Route::view('/water-analytics', 'admin.analytics');
+        Route::view('/predictions', 'admin.prediction');
+        Route::view('/water-management', 'admin.water-management');
+        Route::view('/water-quality', 'admin.water-quality');
+        Route::view('/monitoring', 'admin.monitoring');
+        Route::view('/notifications', 'admin.notification');
+        Route::view('/settings', 'admin.settings');
     }
 );
 
@@ -49,5 +42,12 @@ Route::group(
         Route::get('/', function () {
             return 'Welcome Worker';
         });
+    }
+);
+
+Route::group(
+    ["prefix" => "chat", "as" => "chat."],
+    function () {
+        Route::view('/', 'chat.chat');
     }
 );

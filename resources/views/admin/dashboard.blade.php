@@ -13,16 +13,16 @@
                     <div class="relative">
                         <input type="text" placeholder="Search here..." class="border rounded py-2 px-4">
                     </div>
-                    <button class="ml-4 p-2 bg-gray-200 rounded-full">
+                    <a href="/admin/notifications" class="ml-4 p-2 bg-gray-200 rounded-full">
                         <span class="material-symbols-outlined">
                             notifications
                         </span>
-                    </button>
-                    <button class="ml-4 p-2 bg-gray-200 rounded-full">
+                    </a>
+                    <a href="/admin/settings" class="ml-4 p-2 bg-gray-200 rounded-full">
                         <span class="material-symbols-outlined">
                             person
                         </span>
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">

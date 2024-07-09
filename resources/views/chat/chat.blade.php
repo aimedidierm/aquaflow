@@ -4,7 +4,9 @@
 
 <body class="bg-gray-100 font-sans antialiased">
     <div class="flex h-screen">
-        <x-design-navbar />
+        @if (Auth::user()->role == \App\Enums\UserRole::ADMIN->value)
+        <x-admin-navbar />
+        @endif
         <div class="flex flex-col w-1/3 bg-gray-100 border-r border-gray-200">
             <div class="p-4 flex items-center justify-between bg-gray-50 border-b border-gray-200">
                 <h1 class="text-lg font-semibold">Chats</h1>
@@ -54,8 +56,9 @@
         </div>
 
         <!-- Modal for Group Members -->
-        <div id="groupMembersModal"
-            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div id="groupMembersModal" {{--
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"> --}}
+            class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center hidden">
             <div class="bg-white p-4 rounded-lg w-1/3">
                 <div class="flex items-center justify-between border-b pb-2">
                     <h2 class="text-lg font-semibold">Group Members</h2>

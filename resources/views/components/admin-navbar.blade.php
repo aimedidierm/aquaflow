@@ -5,7 +5,7 @@
         <nav>
             <ul>
                 <li class="mb-4">
-                    <a href="/design/overview" class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
+                    <a href="/admin" class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
                         <span class="w-6 h-6 mr-2 material-symbols-outlined">
                             overview
                         </span>
@@ -13,7 +13,7 @@
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="/design/chat" class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
+                    <a href="/chat" class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
                         <span class="w-6 h-6 mr-2 material-symbols-outlined">
                             forum
                         </span>
@@ -21,7 +21,8 @@
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="/design/analytics" class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
+                    <a href="/admin/water-analytics"
+                        class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
                         <span class="w-6 h-6 mr-2 material-symbols-outlined">
                             analytics
                         </span>
@@ -29,7 +30,7 @@
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="/design/predictions" class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
+                    <a href="/admin/predictions" class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
                         <span class="w-6 h-6 mr-2 material-symbols-outlined">
                             trending_up
                         </span>
@@ -37,7 +38,7 @@
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="/design/water-management"
+                    <a href="/admin/water-management"
                         class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
                         <span class="w-6 h-6 mr-2 material-symbols-outlined">
                             query_stats
@@ -46,7 +47,7 @@
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="/design/water-quality"
+                    <a href="/admin/water-quality"
                         class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
                         <span class="w-6 h-6 mr-2 material-symbols-outlined">
                             water_drop
@@ -55,7 +56,7 @@
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="/design/monitoring" class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
+                    <a href="/admin/monitoring" class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
                         <span class="w-6 h-6 mr-2 material-symbols-outlined">
                             monitoring
                         </span>
@@ -63,7 +64,7 @@
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="/design/notification"
+                    <a href="/admin/notifications"
                         class="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded">
                         <span class="w-6 h-6 mr-2 material-symbols-outlined">
                             notifications
