@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\WorkerMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,7 @@ Route::get('/', function () {
 
 Route::view('login', 'auth.login')->name('login');
 Route::view('register', 'auth.register');
+Route::post('register', [AuthController::class, 'register']);
 
 Route::group(
     ["prefix" => "auth", "as" => "auth."],
@@ -37,9 +39,7 @@ Route::group(
 Route::group(
     ["prefix" => "admin", 'middleware' => AdminMiddleware::class, "as" => "admin."],
     function () {
-        Route::get('/', function () {
-            return 'Welcome Admin';
-        });
+        Route::get('/', [DashboardController::class, 'admin']);
     }
 );
 

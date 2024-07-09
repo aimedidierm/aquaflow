@@ -18,10 +18,10 @@
                     <div class="flex-shrink-0">
                         <span class="text-2xl font-bold">AFM</span>
                     </div>
-                    <div class="hidden md:flex md:space-x-8 ml-10">
+                    {{-- <div class="hidden md:flex md:space-x-8 ml-10">
                         <a href="/" class="text-gray-900 text-sm font-medium">Home</a>
                         <a href="#" class="text-gray-500 text-sm font-medium">Our Services</a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="/login" class="text-gray-500 text-sm font-medium">Sign in</a>

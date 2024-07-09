@@ -12,7 +12,6 @@
     <div class="w-full max-w-sm mx-auto">
         <div class="flex flex-col items-center">
             <h1 class="text-3xl font-bold">AFM</h1>
-            <p class="text-gray-500 mb-8">AquaFlow Manager</p>
         </div>
         <div class="bg-white p-8 rounded-lg shadow-lg border border-blue-200">
             <h2 class="text-2xl font-bold text-blue-500 mb-2">Log In</h2>
