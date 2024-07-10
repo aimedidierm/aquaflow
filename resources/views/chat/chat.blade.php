@@ -6,6 +6,8 @@
     <div class="flex h-screen">
         @if (Auth::user()->role == \App\Enums\UserRole::ADMIN->value)
         <x-admin-navbar />
+        @else
+        <x-worker-navbar />
         @endif
         <div class="flex flex-col w-1/3 bg-gray-100 border-r border-gray-200">
             <div class="p-4 flex items-center justify-between bg-gray-50 border-b border-gray-200">

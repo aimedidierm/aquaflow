@@ -54,7 +54,6 @@ Route::group(
     ["prefix" => "worker", 'middleware' => WorkerMiddleware::class, "as" => "worker."],
     function () {
         Route::get('/', [DashboardController::class, 'worker']);
-        Route::view('/overview', 'worker.overview');
         Route::view('/water-analytics', 'worker.analytics');
         Route::view('/water-quality', 'worker.water-quality');
         Route::get('/notifications', function () {
