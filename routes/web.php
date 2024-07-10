@@ -31,7 +31,21 @@ Route::group(
         Route::view('/water-management', 'admin.water-management');
         Route::view('/water-quality', 'admin.water-quality');
         Route::view('/monitoring', 'admin.monitoring');
-        Route::view('/notifications', 'admin.notification');
+        Route::get('/notifications', function () {
+            $notifications = [
+                (object) [
+                    'sender' => 'Karigirwa.eth',
+                    'message' => 'God is God, all the time and we are here as children of God...',
+                    'timestamp' => '3 min ago',
+                ],
+                // Add more notifications as needed
+            ];
+
+            return view('admin.notification', ['notifications' => $notifications]);
+        });
+        Route::get('/settings', function () {
+            return view('admin.settings');
+        });
         Route::view('/settings', 'admin.settings');
     }
 );
