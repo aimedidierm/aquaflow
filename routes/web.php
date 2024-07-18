@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DistributionController;
+use App\Http\Controllers\MessageController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\WorkerMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -64,7 +67,6 @@ Route::group(
                     'message' => 'God is God, all the time and we are here as children of God...',
                     'timestamp' => '3 min ago',
                 ],
-                // Add more notifications as needed
             ];
 
             return view('worker.notification', ['notifications' => $notifications]);
@@ -72,6 +74,8 @@ Route::group(
         Route::get('/settings', function () {
             return view('worker.settings');
         });
+        Route::post('/distributions', [DistributionController::class, 'store']);
+        Route::post('/consumptions', [ConsumptionController::class, 'store']);
     }
 );
 
