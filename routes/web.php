@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserRole;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\DashboardController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\DistributionController;
 use App\Http\Controllers\MessageController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\WorkerMiddleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -82,6 +84,8 @@ Route::group(
 Route::group(
     ["prefix" => "chat", "as" => "chat."],
     function () {
-        Route::view('/', 'chat.chat');
+        Route::get('/', [MessageController::class, 'index']);
+        Route::get('/chat-room/{chatId}', [MessageController::class, 'chatRoom'])->name('room');
+        Route::post('/chat-room/{chatId}/send-message', [MessageController::class, 'store'])->name('sendMessage');
     }
 );

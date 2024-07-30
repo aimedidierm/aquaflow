@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MessageRequest;
 use App\Models\Message;
 use App\Models\MessageUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,27 +47,13 @@ class MessageController extends Controller
         })->map(function ($messages) {
             return $messages->first();
         })->values();
-
-        return response()->json([
-            'chats' => $groupedChats
-        ], Response::HTTP_OK);
+        return view('chat.chat', ['chatListing' => $groupedChats, 'myId' => Auth::id()]);
     }
 
     public function chatRoom(string $id)
     {
+        $user = User::find($id);
         $myId = Auth::id();
-        //marking them as read
-        $messages = Message::where('user_id', $myId)
-            ->where('receiver_id', $id)
-            ->whereHas('messageUser', function ($query) {
-                $query->where('is_read', false);
-            })
-            ->get();
-        foreach ($messages as $message) {
-            $messageStatus = MessageUser::find($message->id);
-            $messageStatus->is_read = true;
-            $messageStatus->update();
-        }
 
         $sendChats = Message::where('user_id', $myId)
             ->where('receiver_id', $id)
@@ -76,10 +63,7 @@ class MessageController extends Controller
             ->get();
 
         $allChats = $sendChats->merge($receivedChats)->unique('id')->values();
-
-        return response()->json([
-            'chats' => $allChats
-        ], Response::HTTP_OK);
+        return view('chat.chat-room', ['chat' => $id, 'name' => $user->name, 'messages' => $allChats]);
     }
 
     /**
@@ -100,8 +84,6 @@ class MessageController extends Controller
             'message_id' => $message->id,
         ]);
 
-        return response()->json([
-            'message' => 'Message send'
-        ], Response::HTTP_OK);
+        return redirect("/chat");
     }
 }
