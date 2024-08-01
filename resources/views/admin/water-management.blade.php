@@ -86,25 +86,25 @@
         new Chart(ctxComparison, {
             type: 'bar',
             data: {
-                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
                 datasets: [
                     {
                         label: 'Residential',
-                        data: [2000, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, 2900],
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Agriculture',
-                        data: [3000, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, 3900],
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Industrial',
-                        data: [2500, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, 3400],
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1

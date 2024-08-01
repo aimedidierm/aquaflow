@@ -34,7 +34,7 @@
                 </div>
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Active Devices</h2>
-                    <p class="text-3xl font-bold">3</p>
+                    <p class="text-3xl font-bold">1</p>
                 </div>
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Low battery Devices</h2>

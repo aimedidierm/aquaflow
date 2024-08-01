@@ -49,10 +49,6 @@
                         <h2 class="text-xl font-bold mb-4">Residential</h2>
                         <canvas id="residentialChart"></canvas>
                     </div>
-                    <div>
-                        <h2 class="text-xl font-bold mb-4">Water Quality</h2>
-                        <canvas id="waterQualityMap"></canvas>
-                    </div>
                 </div>
             </div>
 
@@ -69,18 +65,18 @@
             new Chart(ctx1, {
                 type: 'bar',
                 data: {
-                    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                    labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022','2023', '2024'],
                     datasets: [
                         {
                             label: 'Predicted water',
-                            data: [3000, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, 3900],
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1
                         },
                         {
                             label: 'Used water',
-                            data: [2900, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, 3800],
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
@@ -101,18 +97,18 @@
             new Chart(ctx2, {
                 type: 'bar',
                 data: {
-                    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                    labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023','2024'],
                     datasets: [
                         {
                             label: 'Predicted water',
-                            data: [3200, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, 4100],
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1
                         },
                         {
                             label: 'Used water',
-                            data: [3100, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, 4000],
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
@@ -133,18 +129,18 @@
             new Chart(ctx3, {
                 type: 'bar',
                 data: {
-                    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                    labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023','2024'],
                     datasets: [
                         {
                             label: 'Predicted water',
-                            data: [2800, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, 3700],
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1
                         },
                         {
                             label: 'Used water',
-                            data: [2700, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, 3600],
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
@@ -160,44 +156,6 @@
                     }
                 }
             });
-    
-            const ctx4 = document.getElementById('waterQualityMap').getContext('2d');
-            new Chart(ctx4, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Water Quality Index',
-                        data: [
-                            { x: 1, y: 50, r: 10 },
-                            { x: 2, y: 30, r: 10 },
-                            { x: 3, y: 20, r: 10 }
-                        ],
-                        backgroundColor: [
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(255, 99, 132, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 99, 132, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            beginAtZero: true
-                        },
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-    
             const ctx5 = document.getElementById('waterUsageChart').getContext('2d');
             new Chart(ctx5, {
                 type: 'bar',

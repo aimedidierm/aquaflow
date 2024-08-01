@@ -16,7 +16,7 @@
             <div class="flex justify-between items-center py-6">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <span class="text-2xl font-bold">AFM</span>
+                        <span class="text-2xl font-bold">WRM</span>
                     </div>
                     {{-- <div class="hidden md:flex md:space-x-8 ml-10">
                         <a href="/" class="text-gray-900 text-sm font-medium">Home</a>

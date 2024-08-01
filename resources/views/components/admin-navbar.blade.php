@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 <div class="w-64 bg-white p-4 shadow-md flex flex-col justify-between">
     <div>
-        <div class="text-2xl font-bold mb-6">AFM</div>
+        <div class="text-2xl font-bold mb-6">WRM</div>
         <nav>
             <ul>
                 <li class="mb-4">
