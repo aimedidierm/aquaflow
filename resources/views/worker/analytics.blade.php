@@ -62,6 +62,12 @@
     <script>
         // Chart.js configurations for the different charts
             const ctx1 = document.getElementById('industrialChart').getContext('2d');
+            const agricultureData = @json($agriculture);
+            const industrialData = @json($industrial);
+            const residenceData = @json($residence);
+            const wastedData = @json($wasted);
+            const consumptionData = @json($consumption);
+
             new Chart(ctx1, {
                 type: 'bar',
                 data: {
@@ -76,7 +82,7 @@
                         },
                         {
                             label: 'Used water',
-                            data: [0, 0, 0, 0, 0, 0, 0, 0, 3800],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, industrialData],
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
@@ -108,7 +114,7 @@
                         },
                         {
                             label: 'Used water',
-                            data: [0, 0, 0, 0, 0, 0, 0, 0, 4000],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, agricultureData],
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
@@ -140,7 +146,7 @@
                         },
                         {
                             label: 'Used water',
-                            data: [0, 0, 0, 0, 0, 0, 0, 0, 3600],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, residenceData],
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
@@ -160,25 +166,25 @@
             new Chart(ctx5, {
                 type: 'bar',
                 data: {
-                    labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+                    labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
                     datasets: [
                         {
                             label: 'Predicted water',
-                            data: [3000, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100, 4200],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800],
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1
                         },
                         {
                             label: 'Used water',
-                            data: [2900, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, consumptionData ],
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
                         },
                         {
                             label: 'Wasted water',
-                            data: [500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600],
+                            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, wastedData],
                             backgroundColor: 'rgba(255, 206, 86, 0.2)',
                             borderColor: 'rgba(255, 206, 86, 1)',
                             borderWidth: 1

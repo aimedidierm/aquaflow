@@ -10,7 +10,7 @@ const char* ssid = "Balance";
 const char* password = "balance1234";
 
 // Server endpoint
-const char* serverName = "https://your-ngrok-url.ngrok-free.app/api/status";
+const char* serverName = "https://3741-197-157-165-178.ngrok-free.app/api/status";
 
 // TDS sensor pin
 const int TDS_PIN = A0;

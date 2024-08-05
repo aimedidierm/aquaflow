@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DistributionController;
+use App\Http\Controllers\MeasureController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\AdminMiddleware;
@@ -33,13 +34,14 @@ Route::group(
     function () {
         Route::get('/', [DashboardController::class, 'admin']);
         Route::get('/water-analytics', [ConsumptionController::class, 'waterAnalytics']);
-        Route::view('/predictions', 'admin.prediction');
-        Route::view('/water-management', 'admin.water-management');
-        Route::view('/water-quality', 'admin.water-quality');
-        Route::view('/monitoring', 'admin.monitoring');
+        Route::get('/predictions', [ConsumptionController::class, 'waterPredictions']);
+        Route::get('/water-management', [ConsumptionController::class, 'waterManagement']);
+        Route::get('/water-quality', [ConsumptionController::class, 'waterQuality']);
+        Route::get('/monitoring', [ConsumptionController::class, 'waterMonitoring']);
         Route::get('/notifications', [NotificationController::class, 'index']);
         Route::view('/settings', 'admin.settings');
         Route::put('/settings', [AuthController::class, 'profile']);
+        Route::get('report', [MeasureController::class, 'report']);
     }
 );
 
@@ -47,9 +49,9 @@ Route::group(
     ["prefix" => "worker", 'middleware' => WorkerMiddleware::class, "as" => "worker."],
     function () {
         Route::get('/', [DashboardController::class, 'worker']);
-        Route::view('/overview', 'worker.overview');
-        Route::view('/water-analytics', 'worker.analytics');
-        Route::view('/water-quality', 'worker.water-quality');
+        Route::get('/overview', [DashboardController::class, 'admin']);
+        Route::get('/water-analytics', [ConsumptionController::class, 'waterAnalytics']);
+        Route::get('/water-quality', [ConsumptionController::class, 'waterQuality']);
         Route::get('/notifications', [NotificationController::class, 'index']);
         Route::get('/settings', function () {
             return view('worker.settings');

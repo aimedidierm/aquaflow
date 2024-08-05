@@ -17,6 +17,15 @@
                 <input type="text" placeholder="Search or start a new chat"
                     class="w-full p-2 border border-gray-300 rounded-lg">
             </div>
+            @if (Auth::user()->role == \App\Enums\UserRole::WORKER->value)
+            <div class="p-4">
+                <li class="chat-item flex items-center p-4 cursor-pointer hover:bg-gray-200" data-chat="{{ 1 }}">
+                    <button
+                        class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">Contact
+                        Admin</button>
+                </li>
+            </div>
+            @endif
             <ul id="chatList" class="flex-1 overflow-y-auto">
                 @foreach ($chatListing as $chat)
                 <li class="chat-item flex items-center p-4 cursor-pointer hover:bg-gray-200" @if ($chat->receiver_id ==

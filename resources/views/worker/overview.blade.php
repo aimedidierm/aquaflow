@@ -28,11 +28,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                 <div class="bg-white p-4 rounded shadow-md">
                     <div class="text-xl font-bold">Water Consumption</div>
-                    <div class="text-4xl font-bold mt-2">5000<span class="text-lg">cube</span></div>
+                    <div class="text-4xl font-bold mt-2">{{$consumption}}<span class="text-lg">cube</span></div>
                 </div>
                 <div class="bg-white p-4 rounded shadow-md">
                     <div class="text-xl font-bold">Wasted water</div>
-                    <div class="text-4xl font-bold mt-2">100,000<span class="text-lg">cube</span></div>
+                    <div class="text-4xl font-bold mt-2">{{$wasted}}<span class="text-lg">cube</span></div>
                 </div>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -54,6 +54,9 @@
     <script>
         // Water Analytics Chart
         const ctx1 = document.getElementById('waterAnalyticsChart').getContext('2d');
+        const agricultureData = @json($agriculture);
+        const industrialData = @json($industrial);
+        const residenceData = @json($residence);
         new Chart(ctx1, {
             type: 'line',
             data: {
@@ -85,21 +88,21 @@
                 datasets: [
                     {
                         label: 'Agriculture',
-                        data: [0, 0, 0, 0, 1800],
+                        data: [0, 0, 0, 0, agricultureData],
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Industrial',
-                        data: [0, 0, 0, 0, 1200],
+                        data: [0, 0, 0, 0, industrialData],
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Residence',
-                        data: [0, 0, 0, 0, 1000],
+                        data: [0, 0, 0, 0, residenceData],
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1

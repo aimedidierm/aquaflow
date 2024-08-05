@@ -30,7 +30,7 @@
             <div class="grid grid-cols-4 gap-6 mb-6">
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Consumed per current week</h2>
-                    <p class="text-3xl font-bold">5125.71 cube</p>
+                    <p class="text-3xl font-bold">{{$consumption}} cube</p>
                 </div>
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Active Devices</h2>

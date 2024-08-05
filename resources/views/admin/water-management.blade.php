@@ -30,15 +30,15 @@
             <div class="grid grid-cols-3 gap-6 mb-6">
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Consumed this month</h2>
-                    <p class="text-3xl font-bold">5000 ltr</p>
+                    <p class="text-3xl font-bold">{{$consumptionMonthly}} cube</p>
                 </div>
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Consumption limit</h2>
-                    <p class="text-3xl font-bold">7000 ltr</p>
+                    <p class="text-3xl font-bold">{{$limit}} cube</p>
                 </div>
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Next month prediction</h2>
-                    <p class="text-3xl font-bold">5500 ltr</p>
+                    <p class="text-3xl font-bold">{{$prediction}} ltr</p>
                 </div>
             </div>
 
@@ -51,10 +51,10 @@
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Consumption Details</h2>
                     <ul>
-                        <li class="mb-2">1200 <span class="text-gray-600">Daily Consumption</span></li>
-                        <li class="mb-2">8500 <span class="text-gray-600">Weekly Consumption</span></li>
-                        <li class="mb-2">35000 <span class="text-gray-600">Monthly Consumption</span></li>
-                        <li class="mb-2">375,000 <span class="text-gray-600">Yearly Consumption</span></li>
+                        <li class="mb-2">{{$consumptionWeekly}} <span class="text-gray-600">Weekly Consumption</span>
+                        </li>
+                        <li class="mb-2">{{$consumptionMonthly}} <span class="text-gray-600">Monthly Consumption</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -64,13 +64,11 @@
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Water Quality Result</h2>
                     <ul>
-                        <li class="mb-2">Coliform Bacteria: 35/100ml</li>
-                        <li class="mb-2">Nitrate-Nitrogen: 20mg/l</li>
-                        <li class="mb-2">pH: 7.50</li>
-                        <li class="mb-2">Iron: 30mg/l</li>
-                        <li class="mb-2">CaCo3: 65mg/l</li>
-                        <li class="mb-2">Sulfate-Sulfur: 45mg/l</li>
-                        <li class="mb-2">Chloride: 60mg/l</li>
+                        <li class="mb-2">TDS: {{$tds->value}}</li>
+                        <li class="mb-2">pH: N/A</li>
+                        <li class="mb-2">Iron: N/A mg/l</li>
+                        <li class="mb-2">CaCo3: N/A mg/l</li>
+                        <li class="mb-2">Sulfate-Sulfur: N/A mg/l</li>
                     </ul>
                 </div>
                 <div class="p-4 bg-white rounded shadow">
@@ -83,6 +81,9 @@
     <script>
         // Consumption Comparison Chart Configuration
         const ctxComparison = document.getElementById('consumptionComparisonChart').getContext('2d');
+        const agricultureData = @json($agriculture);
+        const industrialData = @json($industrial);
+        const residenceData = @json($residence);
         new Chart(ctxComparison, {
             type: 'bar',
             data: {
@@ -90,21 +91,21 @@
                 datasets: [
                     {
                         label: 'Residential',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 2900],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, residenceData],
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Agriculture',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 3900],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, agricultureData],
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Industrial',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 3400],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, industrialData],
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1

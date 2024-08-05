@@ -1,7 +1,6 @@
 @extends('design.layout')
 
 @section('content')
-{{-- TODO: Just remove PH and use TDS values --}}
 
 <body class="bg-gray-100 font-sans antialiased">
     <div class="flex h-screen">
@@ -32,8 +31,8 @@
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Current pH</h2>
                     <canvas id="currentPhChart"></canvas>
-                    <p class="text-3xl font-bold text-center">9.00</p>
-                    <p class="text-center">Average pH today <span class="font-bold">7.55</span></p>
+                    <p class="text-3xl font-bold text-center">{{$tds->value}}</p>
+                    <p class="text-center">Average TDS today <span class="font-bold">{{$tds->value}}</span></p>
                 </div>
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">pH-Histogram</h2>
@@ -53,23 +52,15 @@
                     <h2 class="text-xl font-bold">Current Water Consumption</h2>
                     <canvas id="currentWaterConsumptionChart"></canvas>
                 </div>
-                <div class="p-4 bg-white rounded shadow">
-                    <h2 class="text-xl font-bold">Energy Consumption</h2>
-                    <ul>
-                        <li class="mb-2">Average consumption KWH today: <span class="font-bold">15,540.00 KWH</span>
-                        </li>
-                        <li class="mb-2">Energy consumed today: <span class="font-bold">1,01,240.00 W</span></li>
-                        <li class="mb-2">Energy consumed this week: <span class="font-bold">1,616,360.00 KWH</span></li>
-                    </ul>
-                </div>
             </div>
-        </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Current pH Chart Configuration
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                // Current pH Chart Configuration
         const ctxPh = document.getElementById('currentPhChart').getContext('2d');
+        const agricultureData = @json($agriculture);
+        const industrialData = @json($industrial);
+        const residenceData = @json($residence);
         new Chart(ctxPh, {
             type: 'doughnut',
             data: {
@@ -136,21 +127,21 @@
                 datasets: [
                     {
                         label: 'Residential',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 2900],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, residenceData],
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Agriculture',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 3900],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, agricultureData],
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Industrial',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 3400],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, industrialData],
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
@@ -163,6 +154,6 @@
                 }
             }
         });
-    </script>
+            </script>
 </body>
 @stop

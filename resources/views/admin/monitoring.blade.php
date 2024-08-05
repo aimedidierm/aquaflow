@@ -9,10 +9,11 @@
         <div class="w-4/5 p-6">
             <div class="flex items-center justify-between mb-6">
                 <h1 class="text-2xl font-bold">Water Analytics</h1>
+
                 <div class="flex items-center">
-                    <div class="relative">
-                        <input type="text" placeholder="Search here..." class="border rounded py-2 px-4">
-                    </div>
+                    <a href="/admin/report" class="ml-4 p-2 bg-gray-200 rounded-full">
+                        Generate report
+                    </a>
                     <a href="/admin/notifications" class="ml-4 p-2 bg-gray-200 rounded-full">
                         <span class="material-symbols-outlined">
                             notifications
@@ -30,11 +31,11 @@
             <div class="grid grid-cols-4 gap-6 mb-6">
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Consumed per week</h2>
-                    <p class="text-3xl font-bold text-center">5125.71 cube</p>
+                    <p class="text-3xl font-bold text-center">{{$consumptionWeekly}} cube</p>
                 </div>
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Consumed For All Time</h2>
-                    <p class="text-3xl font-bold text-center">5125.71 cube</p>
+                    <p class="text-3xl font-bold text-center">{{$consumption}} cube</p>
                 </div>
                 <div class="p-4 bg-white rounded shadow">
                     <h2 class="text-xl font-bold">Temperature</h2>
@@ -57,7 +58,7 @@
                     <ul>
                         <li class="mb-2">Name: <span class="font-bold">WM0000125</span></li>
                         <li class="mb-2">Status: <span class="font-bold">Active</span></li>
-                        <li class="mb-2">Name: <span class="font-bold">Water level sensor</span></li>
+                        <li class="mb-2">Name: <span class="font-bold">Water TDS Meter</span></li>
                         <li class="mb-2">Location: <span class="font-bold">Kigali, Rwanda</span></li>
                     </ul>
                     <div class="mt-4">
@@ -72,6 +73,9 @@
     <script>
         // Consumption Comparison Chart Configuration
         const ctxConsumptionComparison = document.getElementById('consumptionComparisonChart').getContext('2d');
+        const agricultureData = @json($agriculture);
+        const industrialData = @json($industrial);
+        const residenceData = @json($residence);
         new Chart(ctxConsumptionComparison, {
             type: 'bar',
             data: {
@@ -79,21 +83,21 @@
                 datasets: [
                     {
                         label: 'Residential',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 2900],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, residenceData],
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Agriculture',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 3900],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, agricultureData],
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Industrial',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 3400],
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, industrialData],
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
