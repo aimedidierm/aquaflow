@@ -49,8 +49,8 @@
 
                     <div class="mb-4">
                         <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-                        <input type="email" name="email" id="email" value="{{ old('email', auth()->user()->email) }}"
-                            class="w-full border rounded py-2 px-3">
+                        <input type="email" name="email" disabled id="email"
+                            value="{{ old('email', auth()->user()->email) }}" class="w-full border rounded py-2 px-3">
                         @error('email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror

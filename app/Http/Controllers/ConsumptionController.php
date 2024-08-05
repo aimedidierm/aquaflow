@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRole;
 use App\Http\Requests\WaterRecordRequest;
 use App\Models\Consumption;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConsumptionController extends Controller
 {
@@ -19,5 +21,14 @@ class ConsumptionController extends Controller
         ]);
 
         return redirect('/worker');
+    }
+
+    public function waterAnalytics()
+    {
+        if (UserRole::ADMIN->value == Auth::user()->role) {
+            return view('admin.analytics');
+        } else {
+            # code...
+        }
     }
 }

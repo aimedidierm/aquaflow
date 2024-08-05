@@ -1,16 +1,22 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
 #include <ESP8266HTTPClient.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 
-// WiFi credentials
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
 const char* ssid = "Balance";
 const char* password = "balance1234";
 
 // Server endpoint
-const char* serverName = "https://didier.requestcatcher.com/";
+const char* serverName = "https://your-ngrok-url.ngrok-free.app/api/status";
 
 // TDS sensor pin
 const int TDS_PIN = A0;
+const int redLedPin = D3;
+const int greenLedPin = D4;
+const int buzzerPin = D5;
 
 // Calibration values for the TDS sensor
 const float Voltage_Conversion_Factor = 3.3 / 1024.0; // Voltage conversion factor for 3.3V and 10-bit ADC
@@ -19,10 +25,23 @@ const float TDS_Factor = 0.5; // Conversion factor from voltage to TDS
 WiFiClientSecure wifiClient;
 
 void setup() {
-  // Initialize serial communication
+  lcd.init();
+  lcd.init();
+  lcd.clear();
+  lcd.backlight();
+  lcd.clear();
   Serial.begin(115200);
+  pinMode(redLedPin, OUTPUT);
+  pinMode(greenLedPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
   
-  // Initialize WiFi
+  digitalWrite(redLedPin, LOW);
+  digitalWrite(greenLedPin, LOW);
+  digitalWrite(buzzerPin, LOW);
+  lcd.print("Connecting");
+  lcd.setCursor(0, 1);
+  lcd.print("to WiFi...");
+  
   WiFi.begin(ssid, password);
   Serial.print("Connecting to WiFi...");
   
@@ -31,44 +50,48 @@ void setup() {
     Serial.print(".");
   }
   Serial.println("connected");
-
-  // Disable SSL certificate verification
+  lcd.clear();
+  lcd.print("connected");
+  delay(1000);
   wifiClient.setInsecure();
+  lcd.clear();
+  lcd.print("System");
+  lcd.setCursor(0, 1);
+  lcd.print("Ready");
+  delay(2000);
 }
 
 void loop() {
-  // Read the analog value from the TDS sensor
   int sensorValue = analogRead(TDS_PIN);
-  
-  // Convert the analog value to voltage
   float voltage = sensorValue * Voltage_Conversion_Factor;
-  
-  // Calculate TDS (Total Dissolved Solids) value
   float tdsValue = (voltage / TDS_Factor) * 1000;
   
-  // Print the TDS value to the serial monitor
   Serial.print("TDS Value: ");
   Serial.print(tdsValue);
   Serial.println(" ppm");
-
-  // Check WiFi connection
+  lcd.clear();
+  lcd.print("TDS Value: ");
+  lcd.print(tdsValue);
+  if(tdsValue > 40){
+    lcd.setCursor(0, 1);
+    lcd.print("Bad quality");
+    delay(200);
+    badQuality();
+  } else {
+    lcd.setCursor(0, 1);
+    lcd.print("Good quality");
+    delay(200);
+    goodQuality();
+  }
+  
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
     http.begin(wifiClient, serverName);
-
-    // Specify content-type header
     http.addHeader("Content-Type", "application/json");
-
-    // Prepare JSON payload
-    //{"tds": 1269.73}
     String jsonPayload = "{\"tds\": ";
     jsonPayload += tdsValue;
     jsonPayload += "}";
-
-    // Send HTTP POST request
     int httpResponseCode = http.POST(jsonPayload);
-    
-    // Print response
     if (httpResponseCode > 0) {
       String response = http.getString();
       Serial.print("HTTP Response code: ");
@@ -77,13 +100,27 @@ void loop() {
     } else {
       Serial.print("Error code: ");
       Serial.println(httpResponseCode);
+      Serial.print("Error reason: ");
+      Serial.println(http.errorToString(httpResponseCode));
     }
-    // Free resources
     http.end();
   } else {
-    Serial.println("WiFi Disconnected");
+    lcd.clear();
+    lcd.print("WiFi");
+    lcd.setCursor(0, 1);
+    lcd.print("Disconnected");
+    delay(2000);
   }
-  
-  // Delay before the next reading
-  delay(10000); // Send data every 10 seconds
+}
+
+void badQuality(){
+  digitalWrite(redLedPin, HIGH);
+  digitalWrite(greenLedPin, LOW);
+  digitalWrite(buzzerPin, HIGH);
+}
+
+void goodQuality(){
+  digitalWrite(redLedPin, LOW);
+  digitalWrite(greenLedPin, HIGH);
+  digitalWrite(buzzerPin, LOW);
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DistributionController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\WorkerMiddleware;
 use Illuminate\Support\Facades\Auth;
@@ -31,27 +32,14 @@ Route::group(
     ["prefix" => "admin", 'middleware' => AdminMiddleware::class, "as" => "admin."],
     function () {
         Route::get('/', [DashboardController::class, 'admin']);
-        Route::view('/water-analytics', 'admin.analytics');
+        Route::get('/water-analytics', [ConsumptionController::class, 'waterAnalytics']);
         Route::view('/predictions', 'admin.prediction');
         Route::view('/water-management', 'admin.water-management');
         Route::view('/water-quality', 'admin.water-quality');
         Route::view('/monitoring', 'admin.monitoring');
-        Route::get('/notifications', function () {
-            $notifications = [
-                (object) [
-                    'sender' => 'Karigirwa.eth',
-                    'message' => 'God is God, all the time and we are here as children of God...',
-                    'timestamp' => '3 min ago',
-                ],
-                // Add more notifications as needed
-            ];
-
-            return view('admin.notification', ['notifications' => $notifications]);
-        });
-        Route::get('/settings', function () {
-            return view('admin.settings');
-        });
+        Route::get('/notifications', [NotificationController::class, 'index']);
         Route::view('/settings', 'admin.settings');
+        Route::put('/settings', [AuthController::class, 'profile']);
     }
 );
 
@@ -62,17 +50,7 @@ Route::group(
         Route::view('/overview', 'worker.overview');
         Route::view('/water-analytics', 'worker.analytics');
         Route::view('/water-quality', 'worker.water-quality');
-        Route::get('/notifications', function () {
-            $notifications = [
-                (object) [
-                    'sender' => 'Karigirwa.eth',
-                    'message' => 'God is God, all the time and we are here as children of God...',
-                    'timestamp' => '3 min ago',
-                ],
-            ];
-
-            return view('worker.notification', ['notifications' => $notifications]);
-        });
+        Route::get('/notifications', [NotificationController::class, 'index']);
         Route::get('/settings', function () {
             return view('worker.settings');
         });

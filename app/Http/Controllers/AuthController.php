@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserRole;
 use App\Http\Requests\loginRequest;
+use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -55,5 +56,18 @@ class AuthController extends Controller
         $woker->save();
 
         return redirect('/');
+    }
+
+    public function profile(ProfileRequest $request)
+    {
+        $user = User::find(Auth::id());
+        $user->password = bcrypt($request->input('password'));
+        $user->update();
+
+        if (Auth::user()->role == UserRole::ADMIN->value) {
+            return redirect('/admin/settings');
+        } else {
+            return redirect('/worker/settings');
+        }
     }
 }
