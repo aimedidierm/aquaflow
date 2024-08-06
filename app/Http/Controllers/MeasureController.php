@@ -10,7 +10,7 @@ class MeasureController extends Controller
 {
     public function report()
     {
-        $measures = Measure::get();
+        $measures = Measure::latest()->get();
         // return view('admin.report', compact('measures'));
         $pdf = Pdf::loadView('admin.report', compact('measures'));
         return $pdf->download('report.pdf');
