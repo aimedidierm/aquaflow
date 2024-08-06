@@ -29,7 +29,7 @@
             <!-- Summary Section -->
             <div class="grid grid-cols-3 gap-6 mb-6">
                 <div class="p-4 bg-white rounded shadow">
-                    <h2 class="text-xl font-bold">Current pH</h2>
+                    <h2 class="text-xl font-bold">Current TDS</h2>
                     <canvas id="currentPhChart"></canvas>
                     <p class="text-3xl font-bold text-center">{{$tds->value}}</p>
                     <p class="text-center">Average TDS today <span class="font-bold">{{$tds->value}}</span></p>
