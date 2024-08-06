@@ -43,12 +43,13 @@ class ConsumptionController extends Controller
 
     public function waterPredictions()
     {
-        $currentDate = Carbon::now();
-        $startOfWeek = $currentDate->startOfWeek(); // Start of the current week (Monday)
-        $endOfWeek = $currentDate->endOfWeek();     // End of the current week (Sunday)
+        // $currentDate = Carbon::now();
+        // $startOfWeek = $currentDate->startOfWeek(); // Start of the current week (Monday)
+        // $endOfWeek = $currentDate->endOfWeek();     // End of the current week (Sunday)
 
-        $consumption = Consumption::whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->sum('volume');
+        // $consumption = Consumption::whereBetween('created_at', [$startOfWeek, $endOfWeek])
+        //     ->sum('volume');
+        $consumption = Consumption::sum('volume');
         if (Auth::user()->role == UserRole::ADMIN->value) {
             return view('admin.prediction', compact('consumption'));
         } else {
@@ -59,17 +60,19 @@ class ConsumptionController extends Controller
     public function waterManagement()
     {
         $limit = 3000;
-        $currentDate = Carbon::now();
-        $startOfWeek = $currentDate->startOfWeek(); // Start of the current week (Monday)
-        $endOfWeek = $currentDate->endOfWeek();     // End of the current week (Sunday)
-        $startOfMonth = $currentDate->startOfMonth(); // Start of the current week (Monday)
-        $endOfMonth = $currentDate->endOfMonth();     // End of the current week (Sunday)
+        // $currentDate = Carbon::now();
+        // $startOfWeek = $currentDate->startOfWeek(); // Start of the current week (Monday)
+        // $endOfWeek = $currentDate->endOfWeek();     // End of the current week (Sunday)
+        // $startOfMonth = $currentDate->startOfMonth(); // Start of the current week (Monday)
+        // $endOfMonth = $currentDate->endOfMonth();     // End of the current week (Sunday)
 
-        $consumptionWeekly = Consumption::whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->sum('volume');
+        // $consumptionWeekly = Consumption::whereBetween('created_at', [$startOfWeek, $endOfWeek])
+        //     ->sum('volume');
+        $consumptionWeekly = Consumption::sum('volume');
         $prediction = $consumptionWeekly + $consumptionWeekly / 6;
-        $consumptionMonthly = Consumption::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->sum('volume');
+        // $consumptionMonthly = Consumption::whereBetween('created_at', [$startOfMonth, $endOfMonth])
+        //     ->sum('volume');
+        $consumptionMonthly = Consumption::sum('volume');
         $agriculture = Consumption::where('sector', WaterSector::AGRICULTURE->value)->sum('volume');
         $industrial = Consumption::where('sector', WaterSector::INDUSTRIAL->value)->sum('volume');
         $residence = Consumption::where('sector', WaterSector::RESIDENCE->value)->sum('volume');
@@ -108,11 +111,12 @@ class ConsumptionController extends Controller
     public function waterMonitoring()
     {
 
-        $currentDate = Carbon::now();
-        $startOfWeek = $currentDate->startOfWeek(); // Start of the current week (Monday)
-        $endOfWeek = $currentDate->endOfWeek();     // End of the current week (Sunday)
-        $consumptionWeekly = Consumption::whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->sum('volume');
+        // $currentDate = Carbon::now();
+        // $startOfWeek = $currentDate->startOfWeek(); // Start of the current week (Monday)
+        // $endOfWeek = $currentDate->endOfWeek();     // End of the current week (Sunday)
+        // $consumptionWeekly = Consumption::whereBetween('created_at', [$startOfWeek, $endOfWeek])
+        //     ->sum('volume');
+        $consumptionWeekly = Consumption::sum('volume');
         $agriculture = Consumption::where('sector', WaterSector::AGRICULTURE->value)->sum('volume');
         $industrial = Consumption::where('sector', WaterSector::INDUSTRIAL->value)->sum('volume');
         $residence = Consumption::where('sector', WaterSector::RESIDENCE->value)->sum('volume');
