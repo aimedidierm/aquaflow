@@ -37,8 +37,8 @@
                             <label class="block text-gray-700">Sector</label>
                             <select name="sector" id="sector" class="border rounded py-2 px-4 w-full">
                                 <option value="Agriculture">Agriculture</option>
-                                <option value="Agriculture">Industrial</option>
-                                <option value="Agriculture">Residence</option>
+                                <option value="Industrial">Industrial</option>
+                                <option value="Residence">Residence</option>
                             </select>
                         </div>
                         <div class="mb-4">
@@ -59,8 +59,8 @@
                             <label class="block text-gray-700">Sector</label>
                             <select name="sector" id="sector" class="border rounded py-2 px-4 w-full">
                                 <option value="Agriculture">Agriculture</option>
-                                <option value="Agriculture">Industrial</option>
-                                <option value="Agriculture">Residence</option>
+                                <option value="Industrial">Industrial</option>
+                                <option value="Residence">Residence</option>
                             </select>
                         </div>
                         <div class="mb-4">
