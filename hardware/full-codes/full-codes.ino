@@ -6,11 +6,11 @@
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 
-const char* ssid = "Balance";
-const char* password = "balance1234";
+const char* ssid = "Leah2024";
+const char* password = "leah@2024";
 
 // Server endpoint
-const char* serverName = "https://3741-197-157-165-178.ngrok-free.app/api/status";
+const char* serverName = "https://emm-project.requestcatcher.com/api/status";
 
 // TDS sensor pin
 const int TDS_PIN = A0;
@@ -72,7 +72,7 @@ void loop() {
   lcd.clear();
   lcd.print("TDS Value: ");
   lcd.print(tdsValue);
-  if(tdsValue > 40){
+  if(tdsValue > 1200){
     lcd.setCursor(0, 1);
     lcd.print("Bad quality");
     delay(200);

@@ -48,6 +48,9 @@
                         TDS value
                     </th>
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">
+                        Decision
+                    </th>
+                    <th style="padding: 8px; border: 1px solid #0c0c0c;">
                         Device
                     </th>
                 </tr>
@@ -60,6 +63,16 @@
                     </td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">
                         {{$measure->value}}
+                    </td>
+                    <td style="padding: 8px; border: 1px solid #0c0c0c;">
+                        {{$measure->value}}
+                    </td>
+                    <td style="padding: 8px; border: 1px solid #0c0c0c;">
+                        @if ($measure->value > 1200)
+                        {{Bad Quality}}
+                        @else
+                        {{Good Quality}}
+                        @endif
                     </td>
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">
                         WM0000125

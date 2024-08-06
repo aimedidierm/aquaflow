@@ -9,4 +9,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/status', [HardwareController::class, 'show'])->middleware(DisableCsrfForSpecificRoutes::class);
+Route::post('/status', [HardwareController::class, 'show']);

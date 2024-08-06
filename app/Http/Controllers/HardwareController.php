@@ -14,7 +14,7 @@ class HardwareController extends Controller
         $mesure = Measure::create(
             [
                 'value' => $request->input('tds'),
-                'user_id' => 1,
+                // 'user_id' => 1,
             ]
         );
 
