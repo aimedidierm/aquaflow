@@ -69,9 +69,9 @@
                     </td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">
                         @if ($measure->value > 1200)
-                        {{Bad Quality}}
+                        {{"Bad Quality"}}
                         @else
-                        {{Good Quality}}
+                        {{"Good Quality"}}
                         @endif
                     </td>
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">
